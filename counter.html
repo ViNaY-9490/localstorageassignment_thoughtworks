@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>countert</title>
+    <style>
+        .counter{
+            margin-top: 100px;
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        #data{
+            font-size: 200px;
+            font-weight: bold;
+        }
+        #decbtn, #incbtn{
+           width: 150px;
+           height: 150px;
+              border-radius: 50%;
+        }
+        #decbtn{
+            background-color: red;
+            color: white;
+            font-weight: bold;
+        }
+        #incbtn{
+            background-color: green;
+            color: white;
+            font-weight: bold;
+        }
+        #shwmsg{
+            color: red;
+            display: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+   <div class="counter">
+     <button onclick="decrement()" id="decbtn">Decrement</button>
+    <span id="data">0</span>
+    <button onclick="increment()" id="incbtn">Increment</button>
+    <p id="shwmsg">... value is less than 0 so decrementing not possible so try with increment  ...</p>
+   </div>
+    <script>
+        if(window.localStorage.getItem("counter")) {
+            //checking there is a counter or not if it is i call genui function sir
+            genui();
+        }
+        function increment(){
+            if(!window.localStorage.getItem("counter")) {
+                //if there is no counter then i will create and intialize with 0 sir
+                window.localStorage.setItem("counter", "0");
+                genui();
+            }
+          
+             //used tenary operator sir first i will get the counter value sir as we know that it is string so i convert it into number using parseint if there is no counter then i will intialize with  '0' string then it will be coverted to 0 then i add 1 sir
+            window.localStorage.setItem("counter", parseInt(window.localStorage.getItem("counter") || "0") + 1);
+            //if we increment then it is greater than 0 so i will make the para that displaying a message use increment to none
+            document.getElementById("shwmsg").style.display = "none";
+            genui();
+           
+        }
+        function decrement(){
+            if(!window.localStorage.getItem("counter")) {
+                window.localStorage.setItem("counter", "0");
+                genui();
+            }
+             if(parseInt(window.localStorage.getItem("counter"))<=0) {
+                window.localStorage.setItem("counter", "0");            
+                genui();
+                document.getElementById("shwmsg").style.display = "block";
+                 }
+           else{
+            window.localStorage.setItem("counter", parseInt(window.localStorage.getItem("counter") || "0") - 1);
+            genui();
+           }
+        }
+        function genui() {
+            document.getElementById("data").innerText = window.localStorage.getItem("counter") || "0";
+        }
+    </script>
+</body>
+</html>
