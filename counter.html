@@ -66,21 +66,27 @@
            
         }
         function decrement(){
+            //i created an decrement function sir 
             if(!window.localStorage.getItem("counter")) {
+                //if there is no counter then i will create and intialize with 0 
                 window.localStorage.setItem("counter", "0");
                 genui();
             }
+            //i will check condition sir if it the counter value is less than or equal to 0 then i will assign the counter to 0 sir 
              if(parseInt(window.localStorage.getItem("counter"))<=0) {
                 window.localStorage.setItem("counter", "0");            
                 genui();
+                //here i will make the paragraph display to block i mean visible sir 
                 document.getElementById("shwmsg").style.display = "block";
                  }
            else{
+            //if the value is greater than 0 then  i will decrement sir 
             window.localStorage.setItem("counter", parseInt(window.localStorage.getItem("counter") || "0") - 1);
             genui();
            }
         }
         function genui() {
+            //i created this function to display the value of the counter sir
             document.getElementById("data").innerText = window.localStorage.getItem("counter") || "0";
         }
     </script>

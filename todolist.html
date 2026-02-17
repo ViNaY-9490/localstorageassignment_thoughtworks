@@ -81,25 +81,44 @@
         <ul id="taskList" type="none"></ul>
     </div>
     <script>
+        //created an empty array intially later the tasks are added into it sir 
          tasks = [];
          if(window.localStorage.getItem("tasks")) {
+            //if there is tasks in localstorage then  i will the values of tasks in localstorage to tasks array
             tasks = JSON.parse(window.localStorage.getItem("tasks"));
+            //as we know that sir it is in the form of json string so i converted it into the array using json.parse 
             genui();
          }
         function addTask() {
+            //this is the function called when the add task button is clicked sir here event biding is happened sir 
             var task = document.getElementById("t1").value;
+            //i taken the input value entered by the user sir 
+            if(tasks.includes(task)) {
+                //if the task is already there in the array sir then i will alert the user that it is already there sir 
+                alert("task is already there");
+                return;
+            }
             tasks.push(task);
+            //i used push method to insert a value in the tasks array that we have taken from the user sir
             window.localStorage.setItem("tasks", JSON.stringify(tasks));
+            //i will create or intialize the tasks value  in local storage with the array values sir i convert the array into a json string using json.stringify sir 
             document.getElementById("t1").value="";
+            //i will clear the data that is entered by the user in the ui sir 
             genui();
             
         }
         function genui() {
+            // i created an genui function to generate the ui sir 
             var taskList = document.getElementById("taskList");
+            //intially i make the task list empty that means making the ul empty sir 
             taskList.innerHTML = "";
+            //i used foreach array method to iterate through all the values in the array
             tasks.forEach((task)=> {
+                //used arrow function as a callback function si 
                 var li = document.createElement("li");
-                li.appendChild(document.createTextNode(task));
+                //created an li item sir
+               // li.appendChild(document.createTextNode(task));
+               li.textContent = task;
                 var btn = document.createElement("button");
                 //i created an button 
                 btn.innerHTML="Delete";
